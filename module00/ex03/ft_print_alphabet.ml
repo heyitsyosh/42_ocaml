@@ -6,4 +6,4 @@ let ft_print_alphabet () =
     )
   in
   loop 'a';
-  print_newline ()
+  print_char '\n'
