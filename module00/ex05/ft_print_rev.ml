@@ -1,4 +1,4 @@
-let ft_string_rev str =
+let ft_print_rev str =
   let rec loop i =
     if i >= 0 then (
       print_char (String.get str i);
