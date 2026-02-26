@@ -1,5 +1,4 @@
-DIRS = ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex08 ex09
-# ex07
+DIRS = ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09
 BUILD_DIR = _build
 OCAMLOPT = ocamlopt
 
@@ -47,7 +46,7 @@ run:
 	done
 
 run%:
-	@ex="ex$*"; \
+	@ex="ex0$*"; \
 	exec="$$ex/$$ex"_test; \
 	if [ -x "$$exec" ]; then \
 		printf "$(GRAY)─── running %s ───$(RESET)\n" "$$exec"; \
