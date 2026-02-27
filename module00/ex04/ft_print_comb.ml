@@ -24,3 +24,9 @@ let ft_print_comb () =
   in
 	first_digit (0);
 	print_string "\n"
+
+(* ────── Tests ────── *)
+
+let () =
+  print_endline "\x1b[4;37mft_print_comb:\x1b[0m";
+  ft_print_comb ()

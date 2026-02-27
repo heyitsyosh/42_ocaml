@@ -22,4 +22,10 @@ let ft_print_comb2 () =
       second_num (x + 1)
   in
   first_num 0;
-  print_char '\n';
+  print_char '\n'
+
+(* ────── Tests ────── *)
+
+let () =
+  print_endline "\x1b[4;37mft_print_comb2:\x1b[0m";
+  ft_print_comb2 ()

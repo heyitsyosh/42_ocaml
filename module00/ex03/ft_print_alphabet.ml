@@ -7,3 +7,9 @@ let ft_print_alphabet () =
   in
   loop 'a';
   print_char '\n'
+
+(* ────── Tests ────── *)
+
+let () =
+  print_endline "\x1b[4;37mft_alphabet:\x1b[0m";
+  ft_print_alphabet ()
