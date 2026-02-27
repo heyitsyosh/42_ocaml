@@ -1,6 +1,8 @@
 DIRS = ex00 ex01
-#  ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09
+# ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09
 BUILD_DIR = _build
+OBJ_DIR = $(BUILD_DIR)/obj
+BIN_DIR = $(BUILD_DIR)/bin
 OCAMLOPT = ocamlopt
 
 # ----------------- Formatting ------------------
@@ -15,54 +17,61 @@ DEL		= $(RED)✗$(RESET)
 
 # ------------------- Rules --------------------
 
-all: $(DIRS)
+all: $(OBJ_DIR) $(BIN_DIR) $(DIRS)
 
-$(BUILD_DIR):
-	@mkdir -p $(BUILD_DIR)
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
-$(DIRS): | $(BUILD_DIR)
-	@mkdir -p $(BUILD_DIR)/$@; \
-	src=$$(ls $@/*.ml); \
-	base=$$(basename $$src .ml); \
-	\
-	$(OCAMLOPT) -c -o $(BUILD_DIR)/$@/$$base.cmx $$src && \
-	printf "$(OK) ocamlopt -c  %s\n" "$$src"; \
-	\
-	$(OCAMLOPT) -c -I $(BUILD_DIR)/$@ -o $(BUILD_DIR)/$@/$@_test.cmx tests/$@_test.ml && \
-	printf "$(OK) ocamlopt -c  tests/%s_test.ml\n" "$@"; \
-	\
-	$(OCAMLOPT) -o $@/$@_test \
-		$(BUILD_DIR)/$@/$$base.cmx \
-		$(BUILD_DIR)/$@/$@_test.cmx && \
-	printf "$(OK) ocamlopt -o  %s/%s_test\n" "$@" "$@"; \
-	printf "$(OK) $(GREEN)%s_test compiled successfully$(RESET)\n" "$@"
+$(BIN_DIR):
+	@mkdir -p $(BIN_DIR)
+
+$(DIRS): | $(OBJ_DIR) $(BIN_DIR)
+	@srcs=$$(ls $@/*.ml 2>/dev/null); \
+	if [ -z "$$srcs" ]; then \
+		printf "$(DEL) no .ml files found in %s\n" "$@"; \
+		exit 1; \
+	fi; \
+	objs=""; \
+	for f in $$srcs; do \
+		base=$$(basename $$f .ml); \
+		cmd="$(OCAMLOPT) -c $$f -I $(OBJ_DIR) -o $(OBJ_DIR)/$@__$$base.cmx"; \
+		$$cmd && \
+		printf "$(OK) ocamlopt -c %s\n" "$$f" || exit 1; \
+		objs="$$objs $(OBJ_DIR)/$@__$$base.cmx"; \
+	done; \
+	link_cmd="$(OCAMLOPT) -o $(BIN_DIR)/$@_test -I $(OBJ_DIR) $$objs"; \
+	$$link_cmd && \
+	printf "$(OK) ocamlopt -o %s\n" "$(BIN_DIR)/$@_test" && \
+	printf "$(OK) $(GREEN)%s_test built successfully$(RESET)\n" "$@" || exit 1
 
 run:
 	@for d in $(DIRS); do \
-		exec="$$d/$$d"_test; \
+		exec="$(BIN_DIR)/$$d"_test; \
 		if [ -x "$$exec" ]; then \
 			printf "$(GRAY)─── running %s ───$(RESET)\n" "$$exec"; \
 			./$$exec; \
+		else \
+			printf "$(DEL) %s not found\n" "$$exec"; \
 		fi; \
 	done
 
 run%:
 	@ex="ex0$*"; \
-	exec="$$ex/$$ex"_test; \
+	exec="$(BIN_DIR)/$$ex"_test; \
 	if [ -x "$$exec" ]; then \
 		printf "$(GRAY)─── running %s ───$(RESET)\n" "$$exec"; \
 		./$$exec; \
 	else \
-		printf "$(DEL) %s not found or not executable\n" "$$exec"; \
+		printf "$(DEL) %s not found\n" "$$exec"; \
 	fi
 
 clean:
-	@rm -rf $(BUILD_DIR)
-	@echo "$(DEL) rm -rf  $(BUILD_DIR)/"
+	@rm -rf $(OBJ_DIR)
+	@printf "$(DEL) rm -rf %s\n" "$(OBJ_DIR)/"
 
-fclean: clean
-	@rm -f $(foreach d,$(DIRS),$(d)/$(d)_test)
-	@printf "$(DEL) rm -f   executables - %s\n" "$(foreach d,$(DIRS),$(d)/$(d)_test)"
+fclean:
+	@rm -rf $(BUILD_DIR)
+	@printf "$(DEL) rm -rf %s\n" "$(BUILD_DIR)/"
 
 re: fclean all
 
