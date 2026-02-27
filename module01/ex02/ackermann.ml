@@ -14,7 +14,7 @@ let test m n =
   Printf.printf "m = %2d, n = %d → %d\n" m n (ackermann m n)
 
 let () =
-  print_endline "\x1b[4;37mackermann tests:\x1b[0m";
+  print_endline "\x1b[4;37mackermann:\x1b[0m";
   test (-1) 7;
   test 0 0;
   test 2 3;

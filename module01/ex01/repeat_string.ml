@@ -15,7 +15,7 @@ let test_with_str str n =
   Printf.printf "%3d * \"%s\" → \"%s\"\n" n str (repeat_string ~str n)
 
 let () =
-  print_endline "\x1b[4;37mrepeat_string tests:\x1b[0m";
+  print_endline "\x1b[4;37mrepeat_string:\x1b[0m";
   print_endline "[Default string]";
   test (-1);
   test 0;
