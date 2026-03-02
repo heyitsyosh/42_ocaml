@@ -2,11 +2,11 @@ let rec fibonacci n =
   if n < 0 then
     -1
   else
-    let rec loop i current next =
+    let rec loop i a b =
       if i = n then
-        current
+        a
       else
-        loop (i + 1) next (current + next)
+        loop (i + 1) b (a + b)
     in
     loop 0 0 1
 
