@@ -1,10 +1,14 @@
 let rec fibonacci n =
   if n < 0 then
     -1
-  else if n <= 1 then
-    n
   else
-    fibonacci (n - 2) + fibonacci (n - 1)
+    let rec loop i current next =
+      if i = n then
+        current
+      else
+        loop (i + 1) next (current + next)
+    in
+    loop 0 0 1
 
 (* ────── Tests ────── *)
 
@@ -17,3 +21,4 @@ let () =
   test 1;
   test 3;
   test 6;
+  test 7;
