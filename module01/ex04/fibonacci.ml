@@ -1,4 +1,4 @@
-let rec fibonacci n =
+let fibonacci n =
   if n < 0 then
     -1
   else
