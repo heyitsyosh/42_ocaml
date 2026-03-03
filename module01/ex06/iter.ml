@@ -12,7 +12,7 @@ let iter f x n =
 (* ────── Tests ────── *)
 
 let test label f x n =
-  Printf.printf "%-7s  x=%3d   n =%3d  → %d\n" label x n (iter f x n)
+  Printf.printf "%-7s  x=%3d   n=%3d  → %d\n" label x n (iter f x n)
 
 let () =
   print_endline "\x1b[4;37miter:\x1b[0m";

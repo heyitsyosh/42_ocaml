@@ -12,8 +12,8 @@ let ft_sum expr start_i last_i =
 
 (* ────── Tests ────── *)
 
-let test expr_str expr lower upper =
-  Printf.printf "%s [%d, %d] → " expr_str lower upper;
+let test label expr lower upper =
+  Printf.printf "%s [%d, %d] → " label lower upper;
   print_float(ft_sum expr lower upper);
   print_newline ()
 
