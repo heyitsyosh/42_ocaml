@@ -12,14 +12,10 @@ let ft_is_palindrome str =
 
 (* ────── Tests ────── *)
 
-let bool_as_string = function
-  | true -> "true"
-  | false -> "false"
-
 let test str =
-  Printf.printf "%s -> %s\n"
+  Printf.printf "%s -> %B\n"
     (if str = "" then "\"\"" else str)
-    (bool_as_string(ft_is_palindrome str))
+    (ft_is_palindrome str)
 
 let () =
   print_endline "\x1b[4;37mft_is_palindrome:\x1b[0m";

@@ -10,13 +10,9 @@ let converges f x n =
 
 (* ────── Tests ────── *)
 
-let bool_as_string = function
-  | true -> "true"
-  | false -> "false"
-
 let test label f x n =
-  Printf.printf "%-7s  x=%3d   n=%3d  → %s\n"
-    label x n (bool_as_string (converges f x n))
+  Printf.printf "%-7s  x=%3d   n=%3d  → %B\n"
+    label x n (converges f x n)
 
 let () =
   print_endline "\x1b[4;37mconverges:\x1b[0m";
