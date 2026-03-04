@@ -16,6 +16,7 @@ let test label f x n =
 
 let () =
   print_endline "\x1b[4;37mconverges:\x1b[0m";
+  print_endline "converges(f, x, n): checks if f^i(x) = i for some i < n";
   test "x * 2" (( * ) 2) 2 5;
   test "x / 2" (fun x -> x / 2) 2 3;
   test "x / 2" (fun x -> x / 2) 2 2;

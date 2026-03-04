@@ -9,10 +9,10 @@ let rec repeat_string ?str:(str="x") n =
 (* ────── Tests ────── *)
 
 let test n =
-  Printf.printf "%3d → \"%s\"\n" n (repeat_string n)
+  Printf.printf "%2d → \"%s\"\n" n (repeat_string n)
 
 let test_with_str str n =
-  Printf.printf "%3d * \"%s\" → \"%s\"\n" n str (repeat_string ~str n)
+  Printf.printf "%2d * \"%s\" → \"%s\"\n" n str (repeat_string ~str n)
 
 let () =
   print_endline "\x1b[4;37mrepeat_string:\x1b[0m";

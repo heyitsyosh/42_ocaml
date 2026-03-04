@@ -9,7 +9,7 @@ let rec repeat_x n =
 (* ────── Tests ────── *)
 
 let test n =
-  Printf.printf "%3d → %s\n" n (repeat_x n)
+  Printf.printf "%2d → %s\n" n (repeat_x n)
 
 let () =
   print_endline "\x1b[4;37mrepeat_x:\x1b[0m";
