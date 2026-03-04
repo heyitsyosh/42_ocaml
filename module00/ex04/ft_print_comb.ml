@@ -1,5 +1,5 @@
 let ft_print_comb () =
-  let rec loop x y z=
+  let rec loop x y z =
     if x > 7 then
 			()
 		else if y > 8 then

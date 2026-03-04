@@ -10,9 +10,12 @@ let ft_print_rev str =
 
 (* ────── Tests ────── *)
 
+let test str =
+  Printf.printf "%S → " str;
+  ft_print_rev str
+
 let () =
   print_endline "\x1b[4;37mft_string_rev:\x1b[0m";
-  print_endline "Hello world !";
-  ft_print_rev "Hello world !";
-  print_endline "\"\"";
-  ft_print_rev ""
+  test "Hello world !";
+  test ":)";
+  test ""
