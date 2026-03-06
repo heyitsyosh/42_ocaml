@@ -1,8 +1,4 @@
-type t =
-  | Spade
-  | Heart
-  | Diamond
-  | Club
+type t = Spade | Heart | Diamond | Club
 
 let all = [Spade; Heart; Diamond; Club]
 
