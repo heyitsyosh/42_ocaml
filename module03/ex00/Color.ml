@@ -1,4 +1,5 @@
 type t = Spade | Heart | Diamond | Club
+
 let all = [Spade; Heart; Diamond; Club]
 
 let toString card =
