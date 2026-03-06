@@ -1,5 +1,5 @@
-DIRS = ex00 ex01
-# ex02 ex03
+DIRS = ex00 ex01 ex02
+# ex03
 BUILD_DIR = _build
 OBJ_DIR = $(BUILD_DIR)/obj
 BIN_DIR = $(BUILD_DIR)/bin
