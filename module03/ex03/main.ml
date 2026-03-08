@@ -33,13 +33,15 @@ let () =
   print_endline "\x1b[4;37mDeck tests:\x1b[0m";
 
   let deck = Deck.newDeck () in
+  let deck2 = Deck.newDeck () in
   let str_list = Deck.toStringList deck in
   let verbose_list = Deck.toStringListVerbose deck in
 
   test_int "newDeck length" (List.length deck);
   print_newline ();
 
-  print_cards "first 6 cards" (take 6 deck);
+  print_cards "first 6 of deck" (take 6 deck);
+  print_cards "first 6 of deck2" (take 6 deck2);
   test_string_list "first 6 strings" (take 6 str_list);
   test_string_list "first 6 verbose" (take 6 verbose_list);
   print_newline ();

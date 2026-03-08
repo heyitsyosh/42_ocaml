@@ -141,7 +141,7 @@ type t = Card.t list
 
 let newDeck () =
   let rec pick_card i = function
-    | [] -> failwith "extract"
+    | [] -> assert false
     | x :: xs ->
         if i = 0 then (x, xs)
         else
