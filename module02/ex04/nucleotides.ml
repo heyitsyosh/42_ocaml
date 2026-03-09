@@ -35,14 +35,14 @@ let generate_nucleotide c =
 let test c =
   let n = generate_nucleotide c in
   match n.base with
-  | A -> Printf.printf "%c -> A\n" c
-  | T -> Printf.printf "%c -> T\n" c
-  | C -> Printf.printf "%c -> C\n" c
-  | G -> Printf.printf "%c -> G\n" c
-  | None -> Printf.printf "%c -> None\n" c
+  | A -> Printf.printf "%c → A\n" c
+  | T -> Printf.printf "%c → T\n" c
+  | C -> Printf.printf "%c → C\n" c
+  | G -> Printf.printf "%c → G\n" c
+  | None -> Printf.printf "%c → None\n" c
 
 let () =
-  print_endline "\x1b[4;37mgenerate_nucleotide:\x1b[0m";
+  print_endline "\x1b[4;37mNucleotide functions:\x1b[0m";
   test 'A';
   test 'T';
   test 'a'
