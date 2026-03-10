@@ -51,6 +51,17 @@ $(DIRS): | $(OBJ_DIR) $(BIN_DIR)
 	printf "$(OK) ocamlopt -o %s\n" "$(BIN_DIR)/$@_test" && \
 	printf "$(OK) $(GREEN)%s_test built successfully$(RESET)\n" "$@" || exit 1
 
+run:
+	@for d in $(DIRS); do \
+		exec="$(BIN_DIR)/$$d"_test; \
+		if [ -x "$$exec" ]; then \
+			printf "$(GRAY)─── running %s ───$(RESET)\n" "$$exec"; \
+			./$$exec; \
+		else \
+			printf "$(DEL) %s not found\n" "$$exec"; \
+		fi; \
+	done
+
 run%:
 	@ex="ex0$*"; \
 	exec="$(BIN_DIR)/$$ex"_test; \
