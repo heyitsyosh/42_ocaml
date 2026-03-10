@@ -28,9 +28,8 @@ let rec take n lst =
   | (n, x :: xs) -> x :: take (n - 1) xs
 
 let () =
-  Random.self_init ();
-
   print_endline "\x1b[4;37mDeck tests:\x1b[0m";
+  Random.self_init ();
 
   let deck = Deck.newDeck () in
   let deck2 = Deck.newDeck () in
@@ -50,9 +49,9 @@ let () =
   test_draw "drawCard []" [];
   print_newline ();
 
-  let ace_spade =
+  let king_spade =
     Deck.Card.newCard
-      Deck.Card.Value.Ace
-      Deck.Card.Suit.Spade
+      Deck.Card.Value.King
+      Deck.Card.Color.Spade
   in
-  print_cards "test submodules" [ace_spade];
+  print_cards "test submodules" [king_spade];

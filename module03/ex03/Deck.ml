@@ -1,5 +1,5 @@
 module Card = struct
-  module Suit = struct
+  module Color = struct
     type t = Spade | Heart | Diamond | Club
     let all = [Spade; Heart; Diamond; Club]
 
@@ -19,8 +19,8 @@ module Card = struct
   end
 
   module Value = struct
-    type t = T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 | Jack | Queen | King | Ace
-    let all = [T2 ; T3 ; T4 ; T5 ; T6 ; T7 ; T8 ; T9 ; T10 ; Jack ; Queen ; King ; Ace]
+    type t = T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 | Jack | Queen | King | As
+    let all = [T2 ; T3 ; T4 ; T5 ; T6 ; T7 ; T8 ; T9 ; T10 ; Jack ; Queen ; King ; As]
 
     let toInt = function
     | T2 -> 1
@@ -35,7 +35,7 @@ module Card = struct
     | Jack -> 10
     | Queen -> 11
     | King -> 12
-    | Ace -> 13
+    | As -> 13
 
     let toString = function
     | T2 -> "2"
@@ -50,7 +50,7 @@ module Card = struct
     | Jack -> "J"
     | Queen -> "Q"
     | King -> "K"
-    | Ace -> "A"
+    | As -> "A"
 
     let toStringVerbose = function
     | T2 -> "2"
@@ -65,7 +65,7 @@ module Card = struct
     | Jack -> "Jack"
     | Queen -> "Queen"
     | King -> "King"
-    | Ace -> "Ace"
+    | As -> "As"
 
     let next = function
     | T2 -> T3
@@ -79,8 +79,8 @@ module Card = struct
     | T10 -> Jack
     | Jack -> Queen
     | Queen -> King
-    | King -> Ace
-    | Ace -> invalid_arg "No next card for Ace"
+    | King -> As
+    | As -> invalid_arg "No next card for As"
 
     let previous = function
     | T2 -> invalid_arg "No previous card for T2"
@@ -95,27 +95,27 @@ module Card = struct
     | Jack -> T10
     | Queen -> Jack
     | King -> Queen
-    | Ace -> King
+    | As -> King
   end
 
-  type t = Value.t * Suit.t
+  type t = Value.t * Color.t
 
-  let newCard value suit = (value, suit)
+  let newCard value color = (value, color)
 
-  let allSpades = List.map (fun value -> (value, Suit.Spade)) Value.all
-  let allHearts =  List.map (fun value -> (value, Suit.Heart)) Value.all
-  let allDiamonds = List.map (fun value -> (value, Suit.Diamond)) Value.all
-  let allClubs =  List.map (fun value -> (value, Suit.Club)) Value.all
+  let allSpades = List.map (fun value -> (value, Color.Spade)) Value.all
+  let allHearts =  List.map (fun value -> (value, Color.Heart)) Value.all
+  let allDiamonds = List.map (fun value -> (value, Color.Diamond)) Value.all
+  let allClubs =  List.map (fun value -> (value, Color.Club)) Value.all
   let all = allSpades @ allHearts @ allDiamonds @ allClubs
 
   let getValue (value, _) = value
-  let getSuit (_, suit) = suit
+  let getColor (_, color) = color
 
-  let toString (value, suit)= Value.toString value ^ Suit.toString suit
-  let toStringVerbose (value, suit) =
+  let toString (value, color)= Value.toString value ^ Color.toString color
+  let toStringVerbose (value, color) =
     Printf.sprintf "Card(%s, %s)"
     (Value.toStringVerbose value)
-    (Suit.toStringVerbose suit)
+    (Color.toStringVerbose color)
 
   let compare (v1, _) (v2, _) =
     if v1 > v2 then 1
@@ -130,11 +130,11 @@ module Card = struct
     | first :: rest ->
       List.fold_left max first rest
 
-  let isOf (_, suit) target = suit = target
-  let isSpade card = isOf card Suit.Spade
-  let isHeart card = isOf card Suit.Heart
-  let isDiamond card = isOf card Suit.Diamond
-  let isClub card = isOf card Suit.Club
+  let isOf (_, color) target = color = target
+  let isSpade card = isOf card Color.Spade
+  let isHeart card = isOf card Color.Heart
+  let isDiamond card = isOf card Color.Diamond
+  let isClub card = isOf card Color.Club
 end
 
 type t = Card.t list

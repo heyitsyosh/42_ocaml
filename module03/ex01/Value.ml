@@ -1,6 +1,6 @@
-type t = T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 | Jack | Queen | King | Ace
+type t = T2 | T3 | T4 | T5 | T6 | T7 | T8 | T9 | T10 | Jack | Queen | King | As
 
-let all = [|T2 ; T3 ; T4 ; T5 ; T6 ; T7 ; T8 ; T9 ; T10 ; Jack ; Queen ; King ; Ace|]
+let all = [|T2 ; T3 ; T4 ; T5 ; T6 ; T7 ; T8 ; T9 ; T10 ; Jack ; Queen ; King ; As|]
 
 let toInt = function
 | T2 -> 1
@@ -15,7 +15,7 @@ let toInt = function
 | Jack -> 10
 | Queen -> 11
 | King -> 12
-| Ace -> 13
+| As -> 13
 
 let toString = function
 | T2 -> "2"
@@ -30,7 +30,7 @@ let toString = function
 | Jack -> "J"
 | Queen -> "Q"
 | King -> "K"
-| Ace -> "A"
+| As -> "A"
 
 let toStringVerbose = function
 | T2 -> "2"
@@ -45,7 +45,7 @@ let toStringVerbose = function
 | Jack -> "Jack"
 | Queen -> "Queen"
 | King -> "King"
-| Ace -> "Ace"
+| As -> "As"
 
 let next = function
 | T2 -> T3
@@ -59,8 +59,8 @@ let next = function
 | T10 -> Jack
 | Jack -> Queen
 | Queen -> King
-| King -> Ace
-| Ace -> invalid_arg "No next card for Ace"
+| King -> As
+| As -> invalid_arg "No next card for As"
 
 let previous = function
 | T2 -> invalid_arg "No previous card for T2"
@@ -75,4 +75,4 @@ let previous = function
 | Jack -> T10
 | Queen -> Jack
 | King -> Queen
-| Ace -> King
+| As -> King

@@ -26,4 +26,4 @@ let () =
 
   print_endline "";
   print_header "Descending with Value.previous:";
-  print_cards_from Value.previous Value.Ace
+  print_cards_from Value.previous Value.As
