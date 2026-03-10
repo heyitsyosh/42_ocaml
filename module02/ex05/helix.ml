@@ -33,6 +33,7 @@ let generate_nucleotide c =
 type helix = nucleotide list
 
 let generate_helix n =
+  Random.self_init ();
   let bases = [|'A'; 'T'; 'C'; 'G'|] in
   let rec loop i =
     if i <= 0 then
@@ -47,11 +48,11 @@ let rec helix_to_string = function
   | x :: xs ->
     let base =
       match x.base with
-      | A    -> "A"
-      | T    -> "T"
-      | C    -> "C"
-      | G    -> "G"
-      | None -> "None"
+      | A -> "A"
+      | T -> "T"
+      | C -> "C"
+      | G -> "G"
+      | _ -> "_"
     in
     base ^ helix_to_string xs
 
@@ -63,7 +64,7 @@ let rec complementary_helix = function
     | T -> generate_nucleotide 'A'
     | C -> generate_nucleotide 'G'
     | G -> generate_nucleotide 'C'
-    | None -> generate_nucleotide 'N'
+    | _ -> generate_nucleotide '_'
     ) :: complementary_helix xs
 
 (* ────── Tests ────── *)
