@@ -1,6 +1,9 @@
-type nucleobase = A | T | C | G | U | None
 type phosphate = string
 type deoxyribose = string
+type nucleobase = A | T | C | G | U | None
+
+let nucleobase_to_string = function
+  | A -> "A" | T -> "T" | C -> "C" | G -> "G" | U -> "U" | _ -> "_"
 
 (* ──── nucleotide ─── *)
 type nucleotide = {
@@ -23,9 +26,6 @@ let generate_nucleotide c =
     sugar = "deoxyribose";
     base = base;
   }
-
-let nucleobase_to_string = function
-  | A -> "A" | T -> "T" | C -> "C" | G -> "G" | U -> "U" | _ -> "_"
 
 (* ────── helix ────── *)
 type helix = nucleotide list
@@ -266,6 +266,6 @@ let () =
   (* Start codon (Methionine): ATG → TAC → AUG
      End codon UGA (also UAA, UAG):  TGA → ACT → UGA *)
   test "ATGAAA"; (* No end codon *)
-  test "ATGGUCGCCTGA"; (* Met-Gly-Pro-*, collagen? *)
+  test "ATGGGTCCATGA"; (* Met-Gly-Pro-*, collagen? *)
   test "AAAATGGGTCCATGA"; (* Met-Gly-Pro-*, ignore front *)
   test "ATGGGTCCATGAAAA"; (* Met-Gly-Pro-*, ignore back *)

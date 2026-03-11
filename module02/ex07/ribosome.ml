@@ -2,6 +2,9 @@ type phosphate = string
 type deoxyribose = string
 type nucleobase = A | T | C | G | U | None
 
+let nucleobase_to_string = function
+  | A -> "A" | T -> "T" | C -> "C" | G -> "G" | U -> "U" | _ -> "_"
+
 (* ──── nucleotide ─── *)
 type nucleotide = {
   phosphate: phosphate;
@@ -23,9 +26,6 @@ let generate_nucleotide c =
     sugar = "deoxyribose";
     base = base;
   }
-
-let nucleobase_to_string = function
-  | A -> "A" | T -> "T" | C -> "C" | G -> "G" | U -> "U" | _ -> "_"
 
 (* ────── helix ────── *)
 type helix = nucleotide list
