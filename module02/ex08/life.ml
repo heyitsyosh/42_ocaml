@@ -173,7 +173,8 @@ let rec protein_to_string = function
   | x :: [] -> aminoacid_to_string x
   | x :: xs -> (aminoacid_to_string x) ^ "-" ^ protein_to_string xs
 
-(* ───── Protein synthesis simulator ───── *)
+(* ───── Protein synthesis simulator functions ───── *)
+
 let transcribe_helix_to_rna coding_strand =
   print_endline "Step 1 - Transcription";
   let comp_strand = complementary_helix coding_strand in
@@ -182,7 +183,6 @@ let transcribe_helix_to_rna coding_strand =
   print_endline (" Template strand :" ^ helix_to_string comp_strand);
   print_endline (" Transcribed RNA :" ^ rna_to_string rna);
   rna
-
 
 let rec print_triplets = function
   | [] -> ()
