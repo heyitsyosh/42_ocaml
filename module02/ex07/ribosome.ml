@@ -146,12 +146,12 @@ let rna_to_aminoacid = function
 (* ───── protein ───── *)
 type protein = aminoacid list
 
-let rec decode_rna = function
+let rec decode_arn = function
   | [] -> []
   | x :: xs ->
     let current = rna_to_aminoacid x in
     if current = Stop then [current]
-    else (current) :: decode_rna xs
+    else (current) :: decode_arn xs
 
 let rec string_of_protein = function
   | [] -> ""
@@ -183,9 +183,9 @@ let test_generate_bases_triplets rna =
   print_triplets (generate_bases_triplets rna);
   print_newline ()
 
-let test_decode_rna triplets =
+let test_decode_arn triplets =
   print_triplets triplets;
-  Printf.printf " → %S\n" (string_of_protein (decode_rna triplets))
+  Printf.printf " → %S\n" (string_of_protein (decode_arn triplets))
 
 let test_string_of_protein protein =
   Printf.printf "protein → %S\n" (string_of_protein protein)
@@ -199,11 +199,11 @@ let () =
   test_generate_bases_triplets [A; U];
   test_generate_bases_triplets [];
 
-  print_endline "\x1b[2mdecode_rna:\x1b[0m";
-  test_decode_rna [(A, U, G); (U, A, A)];
-  test_decode_rna [(A, U, G); (G, G, C); (U, U, U); (U, A, G)];
-  test_decode_rna [(U, A, A)];
-  test_decode_rna [];
+  print_endline "\x1b[2mdecode_arn:\x1b[0m";
+  test_decode_arn [(A, U, G); (U, A, A)];
+  test_decode_arn [(A, U, G); (G, G, C); (U, U, U); (U, A, G)];
+  test_decode_arn [(U, A, A)];
+  test_decode_arn [];
 
   print_endline "\x1b[2mstring_of_protein:\x1b[0m";
   test_string_of_protein [];

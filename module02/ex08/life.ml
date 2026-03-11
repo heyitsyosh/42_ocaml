@@ -161,12 +161,12 @@ let rna_to_aminoacid = function
 (* ───── protein ───── *)
 type protein = aminoacid list
 
-let rec decode_rna = function
+let rec decode_arn = function
   | [] -> []
   | x :: xs ->
     let current = rna_to_aminoacid x in
     if current = Stop then [current]
-    else (current) :: decode_rna xs
+    else (current) :: decode_arn xs
 
 let rec protein_to_string = function
   | [] -> ""
@@ -214,7 +214,7 @@ let translate_rna_to_protein rna =
       print_string " Triplets        :";
       print_triplets triplets;
       print_newline ();
-    let protein = decode_rna triplets in
+    let protein = decode_arn triplets in
       print_endline (" Protein         :" ^ protein_to_string protein);
       protein
   )
