@@ -1,15 +1,8 @@
 type phosphate = string
-
 type deoxyribose = string
+type nucleobase = A | T | C | G | U | None
 
-type nucleobase =
-  | A
-  | T
-  | C
-  | G
-  | U
-  | None
-
+(* ──── nucleotide ─── *)
 type nucleotide = {
   phosphate: phosphate;
   sugar: deoxyribose;
@@ -31,6 +24,7 @@ let generate_nucleotide c =
     base = base;
   }
 
+(* ────── helix ────── *)
 type helix = nucleotide list
 
 let generate_helix n =
@@ -67,6 +61,7 @@ let rec complementary_helix = function
     | _ -> generate_nucleotide '_'
     ) :: complementary_helix xs
 
+(* ────── mRNA ─────── *)
 type rna = nucleobase list
 
 let rec generate_rna = function

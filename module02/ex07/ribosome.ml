@@ -2,6 +2,7 @@ type phosphate = string
 type deoxyribose = string
 type nucleobase = A | T | C | G | U | None
 
+(* ──── nucleotide ─── *)
 type nucleotide = {
   phosphate: phosphate;
   sugar: deoxyribose;
@@ -23,6 +24,10 @@ let generate_nucleotide c =
     base = base;
   }
 
+let nucleobase_to_string = function
+  | A -> "A" | T -> "T" | C -> "C" | G -> "G" | U -> "U" | _ -> "_"
+
+(* ────── helix ────── *)
 type helix = nucleotide list
 
 let generate_helix n =
@@ -33,14 +38,6 @@ let generate_helix n =
     else generate_nucleotide bases.(Random.int 4) :: loop (i - 1)
   in
   loop n
-
-let nucleobase_to_string = function
-  | A -> "A"
-  | T -> "T"
-  | C -> "C"
-  | G -> "G"
-  | U -> "U"
-  | _ -> "_"
 
 let rec helix_to_string = function
   | [] -> ""
@@ -57,6 +54,7 @@ let rec complementary_helix = function
     | _ -> generate_nucleotide '_'
     ) :: complementary_helix xs
 
+(* ────── mRNA ─────── *)
 type rna = nucleobase list
 
 let rec generate_rna = function
@@ -75,6 +73,7 @@ let rec generate_bases_triplets = function
     (first, second, third) :: generate_bases_triplets xs
   | _ -> []
 
+(* ──── aminoacid ──── *)
 type aminoacid =
 | Ala (* Alanine *)
 | Arg (* Arginine *)
@@ -97,29 +96,6 @@ type aminoacid =
 | Tyr (* Tyrosine *)
 | Val (* Valine *)
 | Stop
-
-let rna_to_aminoacid = function
-| (G, C, A) | (G, C, C) | (G, C, G) | (G, C, U) -> Ala
-| (A, G, A) | (A, G, G) | (C, G, A) | (C, G, C) | (C, G, G) | (C, G, U) -> Arg
-| (A, A, C) | (A, A, U) -> Asn
-| (G, A, C) | (G, A, U) -> Asp
-| (U, G, C) | (U, G, U) -> Cys
-| (C, A, A) | (C, A, G) -> Gln
-| (G, A, A) | (G, A, G) -> Glu
-| (G, G, A) | (G, G, C) | (G, G, G) | (G, G, U) -> Gly
-| (C, A, C) | (C, A, U) -> His
-| (A, U, A) | (A, U, C) | (A, U, U) -> Ile
-| (C, U, A) | (C, U, C) | (C, U, G) | (C, U, U) | (U, U, A) | (U, U, G) -> Leu
-| (A, A, A) | (A, A, G) -> Lys
-| (A, U, G) -> Met
-| (U, U, C) | (U, U, U) -> Phe
-| (C, C, C) | (C, C, A) | (C, C, G) | (C, C, U) -> Pro
-| (U, C, A) | (U, C, C) | (U, C, G) | (U, C, U) | (A, G, U) | (A, G, C) -> Ser
-| (A, C, A) | (A, C, C) | (A, C, G) | (A, C, U) -> Thr
-| (U, G, G) -> Trp
-| (U, A, C) | (U, A, U) -> Tyr
-| (G, U, A) | (G, U, C) | (G, U, G) | (G, U, U) -> Val
-| _ -> Stop
 
 let aminoacid_to_string = function
 | Ala -> "Ala"
@@ -144,6 +120,30 @@ let aminoacid_to_string = function
 | Val -> "Val"
 | Stop -> "*"
 
+let rna_to_aminoacid = function
+| (G, C, A) | (G, C, C) | (G, C, G) | (G, C, U) -> Ala
+| (A, G, A) | (A, G, G) | (C, G, A) | (C, G, C) | (C, G, G) | (C, G, U) -> Arg
+| (A, A, C) | (A, A, U) -> Asn
+| (G, A, C) | (G, A, U) -> Asp
+| (U, G, C) | (U, G, U) -> Cys
+| (C, A, A) | (C, A, G) -> Gln
+| (G, A, A) | (G, A, G) -> Glu
+| (G, G, A) | (G, G, C) | (G, G, G) | (G, G, U) -> Gly
+| (C, A, C) | (C, A, U) -> His
+| (A, U, A) | (A, U, C) | (A, U, U) -> Ile
+| (C, U, A) | (C, U, C) | (C, U, G) | (C, U, U) | (U, U, A) | (U, U, G) -> Leu
+| (A, A, A) | (A, A, G) -> Lys
+| (A, U, G) -> Met
+| (U, U, C) | (U, U, U) -> Phe
+| (C, C, C) | (C, C, A) | (C, C, G) | (C, C, U) -> Pro
+| (U, C, A) | (U, C, C) | (U, C, G) | (U, C, U) | (A, G, U) | (A, G, C) -> Ser
+| (A, C, A) | (A, C, C) | (A, C, G) | (A, C, U) -> Thr
+| (U, G, G) -> Trp
+| (U, A, C) | (U, A, U) -> Tyr
+| (G, U, A) | (G, U, C) | (G, U, G) | (G, U, U) -> Val
+| _ -> Stop (* UAA, UAG, UGA *)
+
+(* ───── protein ───── *)
 type protein = aminoacid list
 
 let rec decode_rna = function
@@ -159,9 +159,6 @@ let rec string_of_protein = function
   | x :: xs -> (aminoacid_to_string x) ^ "-" ^ string_of_protein xs
 
 (* ────── Tests ────── *)
-
-let nucleobase_to_string = function
-  | A -> "A" | T -> "T" | C -> "C" | G -> "G" | U -> "U" | _ -> "_"
 
 let rec print_rna = function
   | [] -> ()

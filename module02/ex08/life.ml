@@ -47,9 +47,9 @@ let string_to_helix s =
   let len = String.length s in
   let rec loop i acc =
     if i = len then
-			List.rev acc
+      List.rev acc
     else
-			loop (i + 1) (generate_nucleotide s.[i] :: acc)
+      loop (i + 1) (generate_nucleotide s.[i] :: acc)
   in
   loop 0 []
 
@@ -229,8 +229,8 @@ let life dna =
   let coding_strand = string_to_helix dna in
   if String.length (helix_to_string coding_strand) < 3 then (
     print_endline
-			("\x1b[31mError: DNA sequence found in \"" ^ dna ^
-			"\" is too short...\x1b[0m");
+      ("\x1b[31mError: DNA sequence found in \"" ^ dna ^
+      "\" is too short...\x1b[0m");
     []
   )
   else if has_invalid_base coding_strand then (
@@ -248,21 +248,21 @@ let life dna =
 
 let test s =
   Printf.printf "─── Testing \"%s\" ───\n" s;
-	let result = life s in
+ let result = life s in
   Printf.printf "\x1b[32mResult: %s\n\n\x1b[0m"
-	(if result <> [] then protein_to_string result else "[]")
+  (if result <> [] then protein_to_string result else "[]")
 
 let () =
   print_endline "\x1b[4;37mlife:\x1b[0m";
 
-	(* Error cases *)
+  (* Error cases *)
   test "";
   test "GA";
   test "GAG";
   test "ATGGUCG CTGA"; (* Met-Gly-Pro-*, collagen? *)
   test "TGA"; (* No start codon *)
 
-	(* Regular cases *)
+  (* Regular cases *)
   (* Start codon (Methionine): ATG → TAC → AUG
      End codon UGA (also UAA, UAG):  TGA → ACT → UGA *)
   test "ATGAAA"; (* No end codon *)
