@@ -1,13 +1,6 @@
 type phosphate = string
-
 type deoxyribose = string
-
-type nucleobase =
-  | A
-  | T
-  | C
-  | G
-  | None
+type nucleobase = A | T | C | G | None
 
 type nucleotide = {
   phosphate: phosphate;
