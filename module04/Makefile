@@ -1,19 +1,20 @@
-DIRS = ex04
+DIRS := ex04
 # ex00 ex01 ex02 ex03 ex05 ex06 ex07 ex08
-BUILD_DIR = _build
-OBJ_DIR = $(BUILD_DIR)/obj
-BIN_DIR = $(BUILD_DIR)/bin
-OCAMLOPT = ocamlopt
+OCAMLOPT := ocamlopt
+
+BUILD_DIR := _build
+OBJ_DIR := $(BUILD_DIR)/obj
+BIN_DIR := $(BUILD_DIR)/bin
 
 # ----------------- Formatting ------------------
 
-GREEN	= \033[32m
-RED		= \033[31m
-GRAY	= \033[90m
-RESET	= \033[0m
+GREEN := \033[32m
+RED := \033[31m
+GRAY := \033[90m
+RESET := \033[0m
 
-OK		= $(GREEN)✓$(RESET)
-DEL		= $(RED)✗$(RESET)
+OK := $(GREEN)✓$(RESET)
+DEL := $(RED)✗$(RESET)
 
 # ------------------- Rules --------------------
 
