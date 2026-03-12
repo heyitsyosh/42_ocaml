@@ -1,5 +1,5 @@
-DIRS := ex00 ex01 ex03 ex04 ex05 ex06 ex07 ex08
-# ex02
+DIRS := ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08
+
 OCAMLOPT := ocamlopt
 
 BUILD_DIR := _build
