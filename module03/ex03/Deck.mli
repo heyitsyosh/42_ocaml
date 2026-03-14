@@ -38,9 +38,9 @@ module Card : sig
   val isClub : t -> bool
 end
 
-type t = Card.t list
+type t
 
 val newDeck : unit -> t
 val toStringList : t -> string list
 val toStringListVerbose : t -> string list
-val drawCard : t -> Card.t * Card.t list
+val drawCard : t -> Card.t * t

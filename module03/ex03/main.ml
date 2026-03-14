@@ -1,26 +1,7 @@
-let print_cards label cards =
-  Printf.printf "%-20s -> " label;
-  List.iter (fun card -> Printf.printf "%s " (Deck.Card.toString card)) cards;
-  print_newline ()
-
 let test_string_list label lst =
   Printf.printf "%-20s -> " label;
   List.iter (fun s -> Printf.printf "%s " s) lst;
   print_newline ()
-
-let test_int label value =
-  Printf.printf "%-20s -> %d\n" label value
-
-let test_draw label deck =
-  try
-    let (card, rest) = Deck.drawCard deck in
-    Printf.printf "%-20s -> drew %s | %d cards remaining\n"
-      label
-      (Deck.Card.toString card)
-      (List.length rest)
-  with
-  | Failure msg ->
-      Printf.printf "%-20s -> Failure: %s\n" label msg
 
 let rec take n lst =
   match (n, lst) with
@@ -32,27 +13,30 @@ let () =
 
   print_endline "\x1b[4;37mDeck tests:\x1b[0m";
 
-  let deck = Deck.newDeck () in
+  let deck  = Deck.newDeck () in
   let deck2 = Deck.newDeck () in
-  let str_list = Deck.toStringList deck in
-  let verbose_list = Deck.toStringListVerbose deck in
 
-  test_int "newDeck length" (List.length deck);
+  test_string_list "first 6 of deck"  (take 6 (Deck.toStringList deck));
+  test_string_list "first 6 of deck2" (take 6 (Deck.toStringList deck2));
+  test_string_list "first 6 verbose"  (take 6 (Deck.toStringListVerbose deck));
+  test_string_list "full deck size"   [string_of_int (List.length (Deck.toStringList deck))];
   print_newline ();
 
-  print_cards "first 6 of deck" (take 6 deck);
-  print_cards "first 6 of deck2" (take 6 deck2);
-  test_string_list "first 6 strings" (take 6 str_list);
-  test_string_list "first 6 verbose" (take 6 verbose_list);
-  print_newline ();
-
-  test_draw "drawCard deck" deck;
-  test_draw "drawCard []" [];
-  print_newline ();
-
-  let ace_spade =
-    Deck.Card.newCard
-      Deck.Card.Value.Ace
-      Deck.Card.Suit.Spade
+  Printf.printf "%-20s -> " "drawing cards";
+  let rec draw_all deck i =
+    if i > 53 then ()
+    else
+      (try
+        let (card, rest) = Deck.drawCard deck in
+        Printf.printf "%s, " (Deck.Card.toString card);
+        draw_all rest (i + 1)
+      with
+      | Failure msg ->
+        Printf.printf "\x1b[31mFailure (i=%d): %s\x1b[0m\n" i msg)
   in
-  print_cards "test submodules" [ace_spade];
+  draw_all deck 1;
+  print_newline ();
+
+
+  let ace_spade = Deck.Card.newCard Deck.Card.Value.Ace Deck.Card.Suit.Spade in
+  Printf.printf "%-20s -> %s\n" "test submodules" (Deck.Card.toString ace_spade)
