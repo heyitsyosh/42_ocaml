@@ -1,6 +1,6 @@
-class doctor ~name ~age ~sidekick =
+class doctor ~age ~sidekick =
   object (self)
-    val name = name
+    val name = "The Doctor"
     val mutable age = age
     val sidekick = sidekick
     val mutable hp = 100
@@ -38,7 +38,7 @@ _|'----' | '----'|_|};
       print_endline
         ("Travelling from " ^ string_of_int (abs start) ^ get_date_unit start ^
         " to " ^ string_of_int (abs arrival) ^ get_date_unit arrival ^ ".");
-      print_endline ("The doctor is now " ^ string_of_int age ^ " years old.")
+      print_endline (name ^ " is now " ^ string_of_int age ^ " years old.")
 
     method use_sonic_screwdriver =
       print_endline "Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii"

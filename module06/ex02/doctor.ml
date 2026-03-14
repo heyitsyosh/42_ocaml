@@ -1,6 +1,6 @@
-class doctor ~name ~age ~sidekick =
+class doctor ~age ~sidekick =
   object (self)
-    val name = name
+    val name = "The Doctor"
     val mutable age = age
     val sidekick = sidekick
     val mutable hp = 100
@@ -12,11 +12,11 @@ class doctor ~name ~age ~sidekick =
       ", hp: " ^ string_of_int hp
 
     method talk =
-      if hp <= 0 then print_endline ("Dr. " ^name ^ " is dead and cannot speak.")
+      if hp <= 0 then print_endline (name ^ " is dead and cannot speak.")
       else print_endline "Hi! I'm the Doctor!"
 
     method travel_in_time start arrival =
-      if hp <= 0 then print_endline ("Dr. " ^ name ^ " is dead and cannot time travel.")
+      if hp <= 0 then print_endline (name ^ " is dead and cannot time travel.")
       else (
         print_endline {|    ____,^.____
  ,-'-----------'-.
@@ -41,18 +41,18 @@ _|'----' | '----'|_|};
         print_endline
           ("Travelling from " ^ string_of_int (abs start) ^ get_date_unit start ^
           " to " ^ string_of_int (abs arrival) ^ get_date_unit arrival ^ ".");
-        print_endline ("The doctor is now " ^ string_of_int age ^ " years old.")
+        print_endline (name ^ " is now " ^ string_of_int age ^ " years old.")
       )
 
     method use_sonic_screwdriver =
-      if hp <= 0 then print_endline ("Dr. " ^ name ^ " is dead and cannot use the sonic screwdriver.")
+      if hp <= 0 then print_endline (name ^ " is dead and cannot use the sonic screwdriver.")
       else print_endline "Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii"
 
     method take_damage =
       hp <- hp - 50
 
     method private regenerate =
-      if hp <= 0 then print_endline ("Dr. " ^ name ^ " is dead and cannot regenerate.")
+      if hp <= 0 then print_endline (name ^ " is dead and cannot regenerate.")
       else hp <- 100
 
     initializer
