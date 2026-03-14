@@ -6,4 +6,4 @@ let () =
     Printf.printf "%-7s %-4s\n"
       (Suit.toStringVerbose c)
       (Suit.toString c)
-  ) Suit.all;
+  ) Suit.all
