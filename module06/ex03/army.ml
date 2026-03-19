@@ -1,6 +1,6 @@
-class ['a] army =
+class ['a] army a =
   object (self)
-    val mutable members : 'a list = []
+    val mutable members : 'a list = a
 
     method add new_member =
       members <- new_member :: members

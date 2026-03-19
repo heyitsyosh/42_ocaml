@@ -3,10 +3,13 @@ let () =
 
   (* Army of people *)
   print_endline "── People Army ──";
-  let people_army = new Army.army in
-  people_army#add (new People.people "Rose");
-  people_army#add (new People.people "Donna");
-  people_army#add (new People.people "Amy");
+  let people_list : People.people list = [
+    new People.people "Rose";
+    new People.people "Donna";
+  ] in
+  let people_army = new Army.army people_list in
+  let amy = new People.people "Amy" in
+  people_army#add amy; 
   print_endline people_army#to_string;
 
   print_endline "\n[Delete 3 times...]";
@@ -21,7 +24,7 @@ let () =
 
   (* Army of doctors *)
   print_endline "\n── Doctor Army ──";
-  let doctor_army = new Army.army in
+  let doctor_army = new Army.army [] in
   let rose = new People.people "Rose" in
   doctor_army#add (new Doctor.doctor ~age:900 ~sidekick:rose);
   print_endline doctor_army#to_string;
@@ -30,8 +33,8 @@ let () =
 
   (* Army of daleks *)
   print_endline "\n── Dalek Army ──";
-  let dalek_army = new Army.army in
-  dalek_army#add (new Dalek.dalek);
+  let dalek = new Dalek.dalek in
+  let dalek_army = new Army.army [dalek] in
   print_endline dalek_army#to_string;
   dalek_army#delete;
   print_endline dalek_army#to_string;
