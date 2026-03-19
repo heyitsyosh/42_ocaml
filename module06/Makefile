@@ -1,5 +1,5 @@
-DIRS := ex00 ex01 ex02
-# ex03 ex04
+DIRS := ex00 ex01 ex02 ex03
+# ex04
 
 GREEN := \033[32m
 RED := \033[31m
