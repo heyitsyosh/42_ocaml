@@ -9,9 +9,10 @@ class dalek =
       ", hp: " ^ string_of_int hp ^
       ", shield: " ^ string_of_bool shield
 
+    method is_alive = hp > 0
+
     method talk =
-      if hp <= 0 then print_endline (name ^ " is dead and cannot speak.")
-      else
+      if self#is_alive then
         let lines = [|
           "Explain! Explain!";
           "Exterminate! Exterminate!";
@@ -19,21 +20,24 @@ class dalek =
           "You are the Doctor! You are the enemy of the Daleks!"
         |] in
         print_endline lines.(Random.int 4)
+      else print_endline (name ^ " is dead and cannot speak.")
 
     method exterminate (person : People.people) =
-      if hp <= 0 then print_endline (name ^ " is dead and cannot exterminate.")
-      else
+      if self#is_alive then (
         person#die;
         shield <- not shield
+      )
+      else print_endline (name ^ " is dead and cannot exterminate.")
 
     method exterminate_doctor (doc : Doctor.doctor) =
-      if hp <= 0 then print_endline (name ^ " is dead and cannot exterminate.")
-      else
+      if self#is_alive then (
         doc#take_damage;
         shield <- not shield
+      )
+      else print_endline (name ^ " is dead and cannot exterminate.")
 
     method die =
-      if hp > 0 then print_endline "Emergency Temporal Shift!";
+      if self#is_alive then print_endline "Emergency Temporal Shift!";
       hp <- 0
     
     initializer

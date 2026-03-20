@@ -11,8 +11,7 @@ class doctor ~age ~sidekick =
       ", sidekick: " ^ sidekick#get_name ^
       ", hp: " ^ string_of_int hp
 
-    method talk =
-      print_endline "Hi! I'm the Doctor!"
+    method talk = print_endline "Hi! I'm the Doctor!"
 
     method travel_in_time start arrival =
       print_endline {|    ____,^.____
@@ -43,8 +42,7 @@ _|'----' | '----'|_|};
     method use_sonic_screwdriver =
       print_endline "Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii"
 
-    method private regenerate =
-      hp <- 100
+    method private regenerate = hp <- 100
 
     initializer
       print_endline ("A new doctor appears... " ^ self#to_string)

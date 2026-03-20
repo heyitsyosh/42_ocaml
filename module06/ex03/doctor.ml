@@ -13,13 +13,14 @@ class doctor ~age ~sidekick =
       ", sidekick: " ^ sidekick#get_name ^
       ", hp: " ^ string_of_int hp
 
+    method is_alive = hp > 0
+
     method talk =
-      if hp <= 0 then print_endline (name ^ " is dead and cannot speak.")
-      else print_endline "Hi! I'm the Doctor!"
+      if self#is_alive then print_endline "Hi! I'm the Doctor!"
+      else print_endline (name ^ " is dead and cannot speak.")
 
     method travel_in_time start arrival =
-      if hp <= 0 then print_endline (name ^ " is dead and cannot time travel.")
-      else (
+      if self#is_alive then (
         print_endline {|    ____,^.____
  ,-'-----------'-.
 |_POLICE_%&%&_BOX_|
@@ -45,17 +46,17 @@ _|'----' | '----'|_|};
           " to " ^ string_of_int (abs arrival) ^ get_date_unit arrival ^ ".");
         print_endline (name ^ " is now " ^ string_of_int age ^ " years old.")
       )
+      else print_endline (name ^ " is dead and cannot time travel.")
 
     method use_sonic_screwdriver =
-      if hp <= 0 then print_endline (name ^ " is dead and cannot use the sonic screwdriver.")
-      else print_endline "Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii"
+      if self#is_alive then print_endline "Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii"
+      else print_endline (name ^ " is dead and cannot use the sonic screwdriver.")
 
-    method take_damage =
-      hp <- hp - 50
+    method take_damage = if self#is_alive then hp <- hp - 50
 
     method private regenerate =
-      if hp <= 0 then print_endline (name ^ " is dead and cannot regenerate.")
-      else hp <- 100
+      if self#is_alive then hp <- 100
+      else print_endline (name ^ " is dead and cannot regenerate.")
 
     initializer
       print_endline ("A new doctor appears... " ^ self#to_string)

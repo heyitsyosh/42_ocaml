@@ -3,10 +3,10 @@ class people n =
     val name = n
     val mutable hp = 100
 
+    method get_name = name
+
     method to_string =
       "name: " ^ name ^  ", hp: " ^ (string_of_int hp)
-
-    method get_name = name
 
     method talk =
       if hp <= 0 then print_endline (name ^ " is dead and cannot speak.")

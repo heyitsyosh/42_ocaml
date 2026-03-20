@@ -1,5 +1,5 @@
 class ['a] army a =
-  object (self)
+  object
     val mutable members : 'a list = a
 
     method add new_member =

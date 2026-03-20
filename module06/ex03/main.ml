@@ -1,4 +1,5 @@
 let () =
+  Random.self_init ();
   print_endline "\x1b[4;37mArmy:\x1b[0m";
 
   (* Army of people *)

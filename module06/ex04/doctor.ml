@@ -52,8 +52,7 @@ _|'----' | '----'|_|};
       if self#is_alive then print_endline "Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii Whiiiiwhiiiwhiii"
       else print_endline (name ^ " is dead and cannot use the sonic screwdriver.")
 
-    method take_damage =
-      if self#is_alive then hp <- hp - 50
+    method take_damage = if self#is_alive then hp <- hp - 50
 
     method private regenerate =
       if self#is_alive then hp <- 100
