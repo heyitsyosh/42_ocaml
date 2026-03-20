@@ -163,7 +163,7 @@ let toStringListVerbose deck =
   List.map Card.toStringVerbose deck
 
 let drawCard = function
-  | [] -> failwith "empty deck"
-  | first :: rest -> (first, rest)
+| [] -> failwith "empty deck"
+| first :: rest -> (first, rest)
 
 

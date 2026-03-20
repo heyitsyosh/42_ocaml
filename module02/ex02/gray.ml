@@ -6,10 +6,10 @@ let to_bits n width =
   loop 0 []
 
 let rec print_bits = function
-  | [] -> ()
-  | bit :: bits ->
-    print_int bit;
-    print_bits bits
+| [] -> ()
+| bit :: bits ->
+  print_int bit;
+  print_bits bits
 
 let gray n =
   let total = 1 lsl n in

@@ -3,7 +3,7 @@ type deoxyribose = string
 type nucleobase = A | T | C | G | U | None
 
 let nucleobase_to_string = function
-  | A -> "A" | T -> "T" | C -> "C" | G -> "G" | U -> "U" | _ -> "_"
+| A -> "A" | T -> "T" | C -> "C" | G -> "G" | U -> "U" | _ -> "_"
 
 (* ──── nucleotide ─── *)
 type nucleotide = {
@@ -40,38 +40,38 @@ let generate_helix n =
   loop n
 
 let rec helix_to_string = function
-  | [] -> ""
-  | x :: xs -> nucleobase_to_string x.base ^ helix_to_string xs
+| [] -> ""
+| x :: xs -> nucleobase_to_string x.base ^ helix_to_string xs
 
 let rec complementary_helix = function
-  | [] -> []
-  | x :: xs ->
-    (match x.base with
-    | A -> generate_nucleotide 'T'
-    | T -> generate_nucleotide 'A'
-    | C -> generate_nucleotide 'G'
-    | G -> generate_nucleotide 'C'
-    | _ -> generate_nucleotide '_'
-    ) :: complementary_helix xs
+| [] -> []
+| x :: xs ->
+  (match x.base with
+  | A -> generate_nucleotide 'T'
+  | T -> generate_nucleotide 'A'
+  | C -> generate_nucleotide 'G'
+  | G -> generate_nucleotide 'C'
+  | _ -> generate_nucleotide '_'
+  ) :: complementary_helix xs
 
 (* ────── mRNA ─────── *)
 type rna = nucleobase list
 
 let rec generate_rna = function
-  | [] -> []
-  | x :: xs ->
-    (match x.base with
-    | A -> U
-    | T -> A
-    | C -> G
-    | G -> C
-    | _ -> None
-    ) :: generate_rna xs
+| [] -> []
+| x :: xs ->
+  (match x.base with
+  | A -> U
+  | T -> A
+  | C -> G
+  | G -> C
+  | _ -> None
+  ) :: generate_rna xs
 
 let rec generate_bases_triplets = function
-  | first :: second :: third :: xs ->
-    (first, second, third) :: generate_bases_triplets xs
-  | _ -> []
+| first :: second :: third :: xs ->
+  (first, second, third) :: generate_bases_triplets xs
+| _ -> []
 
 (* ──── aminoacid ──── *)
 type aminoacid =
@@ -147,34 +147,34 @@ let rna_to_aminoacid = function
 type protein = aminoacid list
 
 let rec decode_rna = function
-  | [] -> []
-  | x :: xs ->
-    let current = rna_to_aminoacid x in
-    if current = Stop then [current]
-    else (current) :: decode_rna xs
+| [] -> []
+| x :: xs ->
+  let current = rna_to_aminoacid x in
+  if current = Stop then [current]
+  else current :: decode_rna xs
 
 let rec string_of_protein = function
-  | [] -> ""
-  | x :: [] -> aminoacid_to_string x
-  | x :: xs -> (aminoacid_to_string x) ^ "-" ^ string_of_protein xs
+| [] -> ""
+| x :: [] -> aminoacid_to_string x
+| x :: xs -> (aminoacid_to_string x) ^ "-" ^ string_of_protein xs
 
 (* ────── Tests ────── *)
 
 let rec print_rna = function
-  | [] -> ()
-  | x :: xs ->
-      Printf.printf "%s" (nucleobase_to_string x);
-      print_rna xs
+| [] -> ()
+| x :: xs ->
+    Printf.printf "%s" (nucleobase_to_string x);
+    print_rna xs
 
 let rec print_triplets = function
-  | [] -> ()
-  | (a, b, c) :: xs ->
-      Printf.printf "%s%s%s"
-        (nucleobase_to_string a)
-        (nucleobase_to_string b)
-        (nucleobase_to_string c);
-      if xs <> [] then Printf.printf " | ";
-      print_triplets xs
+| [] -> ()
+| (a, b, c) :: xs ->
+    Printf.printf "%s%s%s"
+      (nucleobase_to_string a)
+      (nucleobase_to_string b)
+      (nucleobase_to_string c);
+    if xs <> [] then Printf.printf " | ";
+    print_triplets xs
 
 let test_generate_bases_triplets rna =
   Printf.printf "rna → ";

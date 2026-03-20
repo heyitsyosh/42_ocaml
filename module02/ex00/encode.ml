@@ -1,12 +1,12 @@
 let encode = function
-  | [] -> []
-  | x :: xs ->
-    let rec loop i current = function
-    | [] -> [(i, current)]
-    | y :: ys when y = current -> loop (i + 1) current ys
-    | y :: ys -> (i, current) :: loop 1 y ys
-    in
-    loop 1 x xs
+| [] -> []
+| x :: xs ->
+  let rec loop i current = function
+  | [] -> [(i, current)]
+  | y :: ys when y = current -> loop (i + 1) current ys
+  | y :: ys -> (i, current) :: loop 1 y ys
+  in
+  loop 1 x xs
 
 (* ────── Tests ────── *)
 

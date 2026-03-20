@@ -14,8 +14,8 @@ let sequence n =
     let rec build_term i term =
       if i = n then
         let rec term_to_string = function
-        | [] -> ""
-        | x :: xs -> string_of_int x ^ term_to_string xs
+          | [] -> ""
+          | x :: xs -> string_of_int x ^ term_to_string xs
         in
         term_to_string term
       else

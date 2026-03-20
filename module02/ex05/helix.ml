@@ -39,28 +39,28 @@ let generate_helix n =
   loop n
 
 let rec helix_to_string = function
-  | [] -> ""
-  | x :: xs ->
-    let base =
-      match x.base with
-      | A -> "A"
-      | T -> "T"
-      | C -> "C"
-      | G -> "G"
-      | _ -> "_"
-    in
-    base ^ helix_to_string xs
+| [] -> ""
+| x :: xs ->
+  let base =
+    match x.base with
+    | A -> "A"
+    | T -> "T"
+    | C -> "C"
+    | G -> "G"
+    | _ -> "_"
+  in
+  base ^ helix_to_string xs
 
 let rec complementary_helix = function
-  | [] -> []
-  | x :: xs ->
-    (match x.base with
-    | A -> generate_nucleotide 'T'
-    | T -> generate_nucleotide 'A'
-    | C -> generate_nucleotide 'G'
-    | G -> generate_nucleotide 'C'
-    | _ -> generate_nucleotide '_'
-    ) :: complementary_helix xs
+| [] -> []
+| x :: xs ->
+  (match x.base with
+  | A -> generate_nucleotide 'T'
+  | T -> generate_nucleotide 'A'
+  | C -> generate_nucleotide 'G'
+  | G -> generate_nucleotide 'C'
+  | _ -> generate_nucleotide '_'
+  ) :: complementary_helix xs
 
 (* ────── Tests ────── *)
 

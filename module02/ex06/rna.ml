@@ -39,47 +39,47 @@ let generate_helix n =
   loop n
 
 let nucleobase_to_string = function
-  | A -> "A"
-  | T -> "T"
-  | C -> "C"
-  | G -> "G"
-  | U -> "U"
-  | _ -> "_"
+| A -> "A"
+| T -> "T"
+| C -> "C"
+| G -> "G"
+| U -> "U"
+| _ -> "_"
 
 let rec helix_to_string = function
-  | [] -> ""
-  | x :: xs -> nucleobase_to_string x.base ^ helix_to_string xs
+| [] -> ""
+| x :: xs -> nucleobase_to_string x.base ^ helix_to_string xs
 
 let rec complementary_helix = function
-  | [] -> []
-  | x :: xs ->
-    (match x.base with
-    | A -> generate_nucleotide 'T'
-    | T -> generate_nucleotide 'A'
-    | C -> generate_nucleotide 'G'
-    | G -> generate_nucleotide 'C'
-    | _ -> generate_nucleotide '_'
-    ) :: complementary_helix xs
+| [] -> []
+| x :: xs ->
+  (match x.base with
+  | A -> generate_nucleotide 'T'
+  | T -> generate_nucleotide 'A'
+  | C -> generate_nucleotide 'G'
+  | G -> generate_nucleotide 'C'
+  | _ -> generate_nucleotide '_'
+  ) :: complementary_helix xs
 
 (* ────── mRNA ─────── *)
 type rna = nucleobase list
 
 let rec generate_rna = function
-  | [] -> []
-  | x :: xs ->
-    (match x.base with
-    | A -> U
-    | T -> A
-    | C -> G
-    | G -> C
-    | _ -> None
-    ) :: generate_rna xs
+| [] -> []
+| x :: xs ->
+  (match x.base with
+  | A -> U
+  | T -> A
+  | C -> G
+  | G -> C
+  | _ -> None
+  ) :: generate_rna xs
 
 (* ────── Tests ────── *)
 
 let rec rna_to_string = function
-  | [] -> ""
-  | x :: xs -> nucleobase_to_string x ^ rna_to_string xs
+| [] -> ""
+| x :: xs -> nucleobase_to_string x ^ rna_to_string xs
 
 let test n =
   Printf.printf "[len=%d]\n" n;
