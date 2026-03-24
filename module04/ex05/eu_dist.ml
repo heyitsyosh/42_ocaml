@@ -1,14 +1,9 @@
 let eu_dist a b =
-  let len = Array.length a in
-  if len <> Array.length b then
-    exit 0;
-  let rec loop i acc =
-    if i < len then
-      loop (i + 1) (acc +. ((a.(i) -. b.(i)) ** 2.0))
-    else
-      sqrt acc
-  in
-  loop 0 0.0
+  try
+    let acc = ref 0.0 in
+    Array.iter2 (fun x y -> acc := !acc +. (x -. y) ** 2.0) a b;
+    sqrt !acc
+  with _ -> print_endline "Error: input arrays have different lengths"; 0.0
 
 (* ────── Tests ────── *)
 
