@@ -3,7 +3,7 @@ let eu_dist a b =
     let acc = ref 0.0 in
     Array.iter2 (fun x y -> acc := !acc +. (x -. y) ** 2.0) a b;
     sqrt !acc
-  with _ -> print_endline "Error: input arrays have different lengths"; 0.0
+  with _ -> prerr_endline "Error: input arrays have different lengths"; 0.0
 
 (* ────── Tests ────── *)
 
