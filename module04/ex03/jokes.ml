@@ -1,33 +1,21 @@
-let read_lines ic count =
-  let i = ref 0 in
-  let lines = Array.make count "" in 
+let read_jokes ic =
+  let jokes = ref [] in
   (try
-    while !i < count do
-      let one_line = input_line ic in
-      if one_line <> "" then (
-        lines.(!i) <- one_line;
-        i := !i + 1
-      )
+    while true do
+      let line = input_line ic in
+      if line <> "" then
+        jokes := line :: !jokes
     done
   with End_of_file -> ());
-  lines
-
-let get_rand_i count =
-  let rand_file = open_in "/dev/urandom" in
-  let seed = input_binary_int rand_file in
-  close_in rand_file;
-  abs seed mod count
+  Array.of_list (List.rev !jokes)
 
 let () =
   let joke_file =
     try open_in Sys.argv.(1)
-    with _ -> prerr_endline ("Error: could not open joke file"); exit 0
+    with _ -> prerr_endline "Error: could not open joke file"; exit 0
   in
-  let count = 
-    try int_of_string (input_line joke_file)
-    with e -> prerr_endline ("Error: joke file has wrong format"); exit 0
-  in
-  let jokes = read_lines joke_file count in
+  let jokes = read_jokes joke_file in
   close_in joke_file;
-  let i = get_rand_i count in
+  Random.self_init ();
+  let i = Random.int (Array.length jokes) in
   print_endline jokes.(i)
