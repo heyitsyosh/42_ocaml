@@ -1,5 +1,5 @@
-DIRS := ex00 ex01
-# ex02 ex03 ex04
+DIRS := ex00 ex01 ex02
+# ex03 ex04
 OCAMLOPT := ocamlopt
 
 UNIX_FOR_ex00 := unix.cmxa
