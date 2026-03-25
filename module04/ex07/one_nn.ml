@@ -38,22 +38,18 @@ type radar = float array * string
 let one_nn data radar =
 	let closest = ref @@ snd @@ List.hd data in
 	let radar_vector = fst radar in
-	let initial_dist = eu_dist (fst @@ List.hd data) radar_vector in
-	let closest_dist = ref initial_dist in
 	let rec loop smallest_distance = function
 		| [] -> ()
 		| (x, status) :: xs ->
 			let current_distance = eu_dist x radar_vector in
 			if current_distance < smallest_distance then (
 				closest := status;
-				closest_dist := current_distance;
 				loop current_distance xs
 			)
 			else
 				loop smallest_distance xs
 	in
-	loop initial_dist data;
-	Printf.printf "Euclidian distance of closest radar = %G\n" !closest_dist;
+	loop (eu_dist (fst @@ List.hd data) radar_vector) data;
 	!closest
 
 (* ────── Tests ────── *)
@@ -68,7 +64,7 @@ let manual_test () =
   let test vec expected =
     let predicted = one_nn training (vec, "") in
     let ok = predicted = expected in
-    Printf.printf "predicted = %-6s  expected = %-6s  %s\n" predicted expected
+    Printf.printf "expected = %-3s predicted = %-6s %s\n" expected predicted 
       (if ok then "\x1b[32mOK\x1b[0m" else "\x1b[31mKO\x1b[0m")
   in
   test [|0.99; 0.01|] "a";
@@ -85,7 +81,7 @@ let dataset_test () =
 		let predicted = one_nn training_data radar in
 		let ok = actual = predicted in
 		if ok then incr correct;
-		Printf.printf "actual = %-4s  predicted = %-4s  %s\n"
+		Printf.printf "actual = %-5s predicted = %-4s  %s\n"
 			actual predicted
 			(if ok then "\x1b[32mOK\x1b[0m" else "\x1b[31mKO\x1b[0m")
 	) testing_data;
