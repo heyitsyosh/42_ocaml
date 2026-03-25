@@ -1,5 +1,5 @@
-DIRS := ex00 ex01 ex02
-# ex03 ex04
+DIRS := ex00 ex01 ex02 ex03
+# ex04
 OCAMLOPT := ocamlopt
 
 UNIX_FOR_ex00 := unix.cmxa
@@ -45,6 +45,16 @@ $(DIRS): | $(OBJ_DIR) $(BIN_DIR)
 	printf "$(OK) ocamlopt -o %s\n" "$(BIN_DIR)/$@_test" && \
 	printf "$(OK) $(GREEN)%s_test built successfully$(RESET)\n" "$@"
 
+clean:
+	@rm -rf $(OBJ_DIR)
+	@printf "$(DEL) rm -rf %s\n" "$(OBJ_DIR)/"
+
+fclean:
+	@rm -rf $(BUILD_DIR)
+	@printf "$(DEL) rm -rf %s\n" "$(BUILD_DIR)/"
+
+re: fclean all
+
 run:
 	@for d in $(DIRS); do \
 		exec="$(BIN_DIR)/$$d"_test; \
@@ -65,15 +75,5 @@ run%:
 	else \
 		printf "$(DEL) %s not found\n" "$$exec"; \
 	fi
-
-clean:
-	@rm -rf $(OBJ_DIR)
-	@printf "$(DEL) rm -rf %s\n" "$(OBJ_DIR)/"
-
-fclean:
-	@rm -rf $(BUILD_DIR)
-	@printf "$(DEL) rm -rf %s\n" "$(BUILD_DIR)/"
-
-re: fclean all
 
 .PHONY: all clean fclean re $(DIRS) run run%

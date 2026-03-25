@@ -1,5 +1,7 @@
 DIRS := ex00 ex01 ex02 ex03 ex04
 
+# ----------------- Formatting ------------------
+
 GREEN := \033[32m
 RED := \033[31m
 GRAY := \033[90m
@@ -10,6 +12,8 @@ DEL := $(RED)✗$(RESET)
 
 ARROW_IN := $(GRAY)↳$(RESET)
 ARROW_OUT := $(GRAY)↲$(RESET)
+
+# ------------------- Rules --------------------
 
 all:
 	@for d in $(DIRS); do \
