@@ -1,23 +1,16 @@
-let rec split_last l =
-  let len = List.length l in
-  assert (len > 0);
-  let float_list = Array.make (len - 1) 0.0 in
-  let last = ref "" in
-  List.iteri (fun i x ->
-    if i < (len - 1) then float_list.(i) <- float_of_string x
-    else last := x
-  ) l;
-  (float_list, last)
+let split_last l =
+  match List.rev l with
+  | [] -> assert false
+  | [x] -> ([||], x)
+  | last :: rest ->
+    (Array.of_list (List.map float_of_string (List.rev rest)), last)
 
 let read_file ic =
-  let lines = ref [] in
-  (try
-    while true do
-      let line = input_line ic in
-      lines := split_last (String.split_on_char ',' line) :: !lines
-    done
-  with End_of_file -> ());
-  List.rev(!lines)
+  let rec loop acc =
+    match input_line ic with
+    | line -> loop (split_last (String.split_on_char ',' line) :: acc)
+    | exception End_of_file -> List.rev acc
+  in loop []
 
 let examples_of_file path =
   try
@@ -31,7 +24,7 @@ let examples_of_file path =
 
 let print_entry (floats, label) =
   let floats_str = String.concat ", " (Array.to_list (Array.map string_of_float floats)) in
-  Printf.printf "  ([|%s|], \"%s\")\n" floats_str !label
+  Printf.printf "  ([|%s|], \"%s\")\n" floats_str label
 
 let test ?(cap = -1) path =
   let data = examples_of_file path in
@@ -48,8 +41,8 @@ let test ?(cap = -1) path =
 
 let () =
   print_endline "\x1b[4;37mexamples_of_file:\x1b[0m";
-  (* test "ex06/ionosphere.test.csv"; *)
-  test ~cap:2 "ex06/ionosphere.test.csv";
-  test ~cap:2 "ex06/ionosphere.train.csv";
-  test "ex06/simple.csv";
-  test "ex06/invalid.train.csv"
+  (* test "datasets/ionosphere.test.csv"; *)
+  test ~cap:2 "datasets/ionosphere.test.csv";
+  test ~cap:2 "datasets/ionosphere.train.csv";
+  test "datasets/simple.csv";
+  test "datasets/invalid.train.csv"
