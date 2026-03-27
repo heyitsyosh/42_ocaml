@@ -55,7 +55,7 @@ let one_nn data radar =
   | (x, _) :: _ ->
     match eu_dist x radar_vector with
     | None -> ()
-    | Some d -> loop d data);
+    | Some d -> closest := snd @@ List.hd data; loop d data);
 	!closest
 
 (* ────── Tests ────── *)
