@@ -7,7 +7,7 @@ let () =
     new Atom.oxygen;
     new Atom.sodium;
     new Atom.chlorine;
-    new Atom.titanium;
+    new Atom.nitrogen;
   ];
   print_endline "\x1b[4;37mAtom - equals:\x1b[0m";
   Printf.printf "hydrogen = hydrogen: %b\n" ((new Atom.hydrogen)#equals (new Atom.hydrogen));
