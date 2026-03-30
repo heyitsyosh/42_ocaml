@@ -2,7 +2,7 @@ NAME := $(notdir $(CURDIR))
 
 OC := ocamlopt
 
-MODULES	:= atom_base atom molecule main
+MODULES	:= atom_base atom molecule_base molecule alkane_base alkane main
 SRCS := $(addsuffix .ml, $(MODULES))
 OBJS := $(addsuffix .cmx, $(MODULES))
 
