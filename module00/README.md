@@ -8,7 +8,7 @@
 
 Requires OCaml `>= 4.08` with `ocamlopt` available.
 
-```bash
+```python
 make        # compile all
 make ex0<N> # compile one excercise
 make clean  # delete .o
@@ -17,7 +17,7 @@ make re     # fclean + compile
 ```
 
 Run binaries:
-```bash
+```python
 make run    # run all
 make run<N> # run exercise N (e.g. make run3)
 ```
