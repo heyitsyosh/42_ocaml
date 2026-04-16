@@ -61,6 +61,7 @@ let se = StringEvalExpr.Mul (StringEvalExpr.Value "very ",
   StringEvalExpr.Value "short")))
 
 let () =
+  print_endline "\x1b[4;37mEvalexpr functor:\x1b[0m";
   Printf.printf "Res = %d\n" (IntEvalExpr.eval ie);
   Printf.printf "Res = %f\n" (FloatEvalExpr.eval fe);
   Printf.printf "Res = %s\n" (StringEvalExpr.eval se)
