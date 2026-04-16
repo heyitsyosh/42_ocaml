@@ -6,15 +6,19 @@ module type VAL = sig
   val x : int
 end
 
-module MakeFst(M : PAIR): VAL = struct
+module type MAKEPROJECTION = PAIR -> VAL
+
+module MakeFst : MAKEPROJECTION = functor (M: PAIR) -> struct
 	let x = fst M.pair
 end
 
-module MakeSnd(M : PAIR): VAL = struct
+module MakeSnd: MAKEPROJECTION = functor (M: PAIR) -> struct
 	let x = snd M.pair
 end
 
-module Pair : PAIR = struct let pair = ( 21, 42 ) end
+module Pair : PAIR = struct
+  let pair = ( 21, 42 )
+end
 
 module Fst : VAL = MakeFst(Pair)
 module Snd : VAL = MakeSnd(Pair)
