@@ -13,7 +13,9 @@ module type EVALEXPR = sig
   val eval : expr -> t
 end
 
-module MakeEvalExpr (M : VAL) : EVALEXPR with type t := M.t =
+module type MAKEEVALEXPR = functor (M : VAL) -> EVALEXPR with type t = M.t
+
+module MakeEvalExpr : MAKEEVALEXPR = functor (M : VAL) ->
   struct
     type t = M.t
     type expr =

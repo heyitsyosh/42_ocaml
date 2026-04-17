@@ -28,7 +28,9 @@ module type FIXED = sig
   val foreach : t -> t -> (t -> unit) -> unit
 end
 
-module Make(M : FRACTIONAL_BITS): FIXED = struct
+module type MAKE = FRACTIONAL_BITS -> FIXED
+
+module Make : MAKE = functor (M : FRACTIONAL_BITS) -> struct
   type t = int
   let bits = M.bits
   let of_float input = int_of_float (Float.round (input *. float_of_int (1 lsl bits)))
