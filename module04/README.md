@@ -18,8 +18,12 @@ make re     # fclean + compile
 
 Run binaries:
 ```python
-make run    # run all
-make run<N> # run exercise N (e.g. make run3)
+# run all
+make run
+# run exercise N (e.g. make run3)
+make run<N>
+# run exercise N with arguments (e.g. make run3 ARGS="jokes.txt")
+make run<N> ARGS="…" 
 ```
 
 ## Overview of exercise objectives:
