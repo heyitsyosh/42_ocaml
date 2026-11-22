@@ -7,11 +7,11 @@ end
 
 module Watchtower = struct
   type hour = int
-	let zero = 0
-	let add hour1 hour2 =
+	let zero : hour = 0
+	let add (hour1 : hour) (hour2 : hour) =
 		(((hour1 + hour2) mod 12) + 12) mod 12
 
-	let sub hour1 hour2 =
+	let sub (hour1 : hour) (hour2 : hour) =
 		(((hour1 - hour2) mod 12) + 12) mod 12
 end
 
@@ -28,6 +28,7 @@ let test_operation op hour1 hour2 =
 
 let () =
   print_endline "\x1b[4;37mWatchtower:\x1b[0m";
+	test_operation '+' Watchtower.zero Watchtower.zero;
 	test_operation '+' 6 6;
 	test_operation '+' 12 12;
 	test_operation '+' 42 3;
