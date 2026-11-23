@@ -22,17 +22,19 @@ Run binaries:
 make run
 # run exercise N (e.g. make run3)
 make run<N>
-# run exercise N with arguments (e.g. make run3 ARGS="jokes.txt")
+# run exercise N with arguments, e.g.:
+#   make run0 ARGS=3
+#   make run3 ARGS="jokes.txt"
 make run<N> ARGS="…" 
 ```
 
 ## Overview of exercise objectives:
 | # | Objective |
 |:---:|:---|
-ex00 | `micronap` — Sleep for n seconds. |
+ex00 | `micronap` — Sleep for N seconds, given as an argument. |
 ex01 | `ft_ref` — Self-implemented reference type with return, get, set, and bind. |
 ex02 | `jokes` — Print a random joke from a hardcoded array. |
-ex03 | `jokes` — Read jokes from a file and print a randomly chosen one. |
+ex03 | `jokes` — Print a random joke from a file given as an argument. |
 ex04 | `sum` — Add two floating-point numbers. |
 ex05 | `eu_dist` — Compute the Euclidean distance between two float arrays. |
 ex06 | `examples_of_file` — Parse a CSV file into (float array, label) pairs. |

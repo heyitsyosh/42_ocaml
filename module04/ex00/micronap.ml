@@ -1,3 +1,5 @@
+(* Usage: ./ex00_test N
+          make run0 ARGS=N *)
 let my_sleep () = Unix.sleep 1
 
 let () =

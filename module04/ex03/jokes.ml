@@ -1,3 +1,5 @@
+(* Usage: ./ex03_test jokes.txt
+          make run3 ARGS=jokes.txt *)
 let read_jokes ic =
   let jokes = ref [] in
   (try
