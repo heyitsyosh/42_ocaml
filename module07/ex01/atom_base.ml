@@ -1,4 +1,4 @@
-class virtual atom (n: string) (s: string) (an: int) =
+class virtual atom (n : string) (s : string) (an : int) =
   object (self)
     method name = n
     method symbol = s

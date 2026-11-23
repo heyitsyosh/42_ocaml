@@ -42,12 +42,12 @@ class dalek =
     
     initializer
       let generate_name =
-        let capital_consonants = [|'B';'C';'D';'F';'G';'H';'J';'K';'L';'M';'N';'P';'Q';'R';'S';'T';'V';'W';'X';'Y';'Z'|] in
-        let lowercase_consonants = [|'b';'c';'d';'f';'g';'h';'j';'k';'l';'m';'n';'p';'q';'r';'s';'t';'v';'w';'x';'y';'z'|] in
-        let lowercase_vowels = [|'a';'e';'i';'o';'u'|] in
-        let c1 = capital_consonants.(Random.int 21) in
-        let v  = lowercase_vowels.(Random.int 5) in
-        let c2 = lowercase_consonants.(Random.int 21) in
+        let capital_consonants = [|'B';'C';'D';'F';'G';'H';'J';'K';'L';'M';'N';'P';'Q';'R';'S';'T';'V';'W';'X';'Y';'Z'|]
+        and lowercase_consonants = [|'b';'c';'d';'f';'g';'h';'j';'k';'l';'m';'n';'p';'q';'r';'s';'t';'v';'w';'x';'y';'z'|]
+        and lowercase_vowels = [|'a';'e';'i';'o';'u'|] in
+        let c1 = capital_consonants.(Random.int 21)
+        and v  = lowercase_vowels.(Random.int 5)
+        and c2 = lowercase_consonants.(Random.int 21) in
         String.make 1 c1 ^ String.make 1 v ^ String.make 1 c2
       in
       name <- name ^ generate_name;

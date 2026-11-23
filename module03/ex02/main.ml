@@ -26,13 +26,13 @@ let test_best label cards =
 let () =
   print_endline "\x1b[4;37mCard tests:\x1b[0m";
 
-  let ace_spade = Card.newCard Card.Value.Ace Card.Suit.Spade in
-  let ace_heart = Card.newCard Card.Value.Ace Card.Suit.Heart in
-  let queen_diamond = Card.newCard Card.Value.Queen Card.Suit.Diamond in
-  let king_club = Card.newCard Card.Value.King Card.Suit.Club in
-  let jack_spade = Card.newCard Card.Value.Jack Card.Suit.Spade in
-  let two_club = Card.newCard Card.Value.T2 Card.Suit.Club in
-  let two_spade = Card.newCard Card.Value.T2 Card.Suit.Spade in
+  let ace_spade = Card.newCard Card.Value.Ace Card.Suit.Spade
+  and ace_heart = Card.newCard Card.Value.Ace Card.Suit.Heart
+  and queen_diamond = Card.newCard Card.Value.Queen Card.Suit.Diamond
+  and king_club = Card.newCard Card.Value.King Card.Suit.Club
+  and jack_spade = Card.newCard Card.Value.Jack Card.Suit.Spade
+  and two_club = Card.newCard Card.Value.T2 Card.Suit.Club
+  and two_spade = Card.newCard Card.Value.T2 Card.Suit.Spade in
 
   test_card "newCard Ace Spade" ace_spade;
   print_newline ();

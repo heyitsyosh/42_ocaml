@@ -1,7 +1,6 @@
 DIRS := ex00 ex01 ex02 ex03 ex04
-OCAMLOPT := ocamlopt
 
-UNIX_FOR_ex00 := unix.cmxa
+OCAMLOPT := ocamlopt
 
 BUILD_DIR := _build
 OBJ_DIR := $(BUILD_DIR)/obj
@@ -40,7 +39,7 @@ $(DIRS): | $(OBJ_DIR) $(BIN_DIR)
 		printf "$(OK) ocamlopt -c %s\n" "$$f" || exit 1; \
 		objs="$$objs $(OBJ_DIR)/$@__$$base.cmx"; \
 	done; \
-	$(OCAMLOPT) -o $(BIN_DIR)/$@_test -I $(OBJ_DIR) $(UNIX_FOR_$@) $$objs && \
+	$(OCAMLOPT) -o $(BIN_DIR)/$@_test -I $(OBJ_DIR) $$objs && \
 	printf "$(OK) ocamlopt -o %s\n" "$(BIN_DIR)/$@_test" && \
 	printf "$(OK) $(GREEN)%s_test built successfully$(RESET)\n" "$@"
 

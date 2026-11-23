@@ -72,10 +72,10 @@ let () =
   let y8 = Fixed8.of_float 21.32 in
   let r8 = Fixed8.add x8 y8 in
   print_endline (Fixed8.to_string r8);
-  Fixed4.foreach (Fixed4.zero) (Fixed4.one) (fun f-> print_endline (Fixed4.to_string f));
+  Fixed4.foreach (Fixed4.zero) (Fixed4.one) (fun f -> print_endline (Fixed4.to_string f));
 
-  let a = Fixed8.of_int 3 in
-  let b = Fixed8.of_int 7 in
+  let a = Fixed8.of_int 3
+  and b = Fixed8.of_int 7 in
 
   Printf.printf "\nto_int 3: %d\n" (Fixed8.to_int a);
   Printf.printf "to_float 3: %f\n" (Fixed8.to_float a);

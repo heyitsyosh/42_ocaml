@@ -13,8 +13,8 @@ let () =
 
   print_endline "\x1b[4;37mDeck tests:\x1b[0m";
 
-  let deck  = Deck.newDeck () in
-  let deck2 = Deck.newDeck () in
+  let deck  = Deck.newDeck ()
+  and deck2 = Deck.newDeck () in
 
   test_string_list "first 6 of deck"  (take 6 (Deck.toStringList deck));
   test_string_list "first 6 of deck2" (take 6 (Deck.toStringList deck2));
@@ -36,7 +36,6 @@ let () =
   in
   draw_all deck 1;
   print_newline ();
-
 
   let ace_spade = Deck.Card.newCard Deck.Card.Value.Ace Deck.Card.Suit.Spade in
   Printf.printf "%-20s -> %s\n" "test submodules" (Deck.Card.toString ace_spade)

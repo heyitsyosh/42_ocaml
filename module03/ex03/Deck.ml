@@ -165,5 +165,3 @@ let toStringListVerbose deck =
 let drawCard = function
 | [] -> failwith "empty deck"
 | first :: rest -> (first, rest)
-
-

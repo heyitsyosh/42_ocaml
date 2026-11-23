@@ -8,12 +8,12 @@ end
 
 module type MAKEPROJECTION = PAIR -> VAL
 
-module MakeFst : MAKEPROJECTION = functor (M: PAIR) -> struct
-	let x = fst M.pair
+module MakeFst : MAKEPROJECTION = functor (M : PAIR) -> struct
+  let x = fst M.pair
 end
 
-module MakeSnd: MAKEPROJECTION = functor (M: PAIR) -> struct
-	let x = snd M.pair
+module MakeSnd : MAKEPROJECTION = functor (M : PAIR) -> struct
+  let x = snd M.pair
 end
 
 module Pair : PAIR = struct

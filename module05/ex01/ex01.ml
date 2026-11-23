@@ -21,6 +21,6 @@ let () =
   print_endline "\x1b[4;37mHashtbl functor:\x1b[0m";
   let ht = StringHashtbl.create 5 in
   let values = [ "Hello"; "world"; "42"; "Ocaml"; "H" ] in
-  let pairs = List.map (fun s-> (s, String.length s)) values in
-  List.iter (fun (k,v)-> StringHashtbl.add ht k v) pairs;
-  StringHashtbl.iter (fun k v-> Printf.printf "k = \"%s\", v = %d\n" k v) ht
+  let pairs = List.map (fun s -> (s, String.length s)) values in
+  List.iter (fun (k,v) -> StringHashtbl.add ht k v) pairs;
+  StringHashtbl.iter (fun k v -> Printf.printf "k = \"%s\", v = %d\n" k v) ht

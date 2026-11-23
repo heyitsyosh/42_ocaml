@@ -8,8 +8,8 @@ let () =
     new People.people "Rose";
     new People.people "Donna";
   ] in
-  let people_army = new Army.army people_list in
-  let amy = new People.people "Amy" in
+  let people_army = new Army.army people_list
+  and amy = new People.people "Amy" in
   people_army#add amy; 
   print_endline people_army#to_string;
 
@@ -25,8 +25,8 @@ let () =
 
   (* Army of doctors *)
   print_endline "\n── Doctor Army ──";
-  let doctor_army = new Army.army [] in
-  let rose = new People.people "Rose" in
+  let doctor_army = new Army.army []
+  and rose = new People.people "Rose" in
   doctor_army#add (new Doctor.doctor ~age:900 ~sidekick:rose);
   print_endline doctor_army#to_string;
   doctor_army#delete;

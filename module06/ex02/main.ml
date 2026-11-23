@@ -3,8 +3,8 @@ let () =
   print_endline "\x1b[4;37mDalek:\x1b[0m";
 
   let donna = new People.people "Donna" in
-  let doc   = new Doctor.doctor ~sidekick:donna ~age:100 in
-  let dalek = new Dalek.dalek in
+  let doc   = new Doctor.doctor ~sidekick:donna ~age:100
+  and dalek = new Dalek.dalek in
 
   print_endline "\n--- Everyone introduces themselves ---";
   doc#talk;
