@@ -80,10 +80,10 @@ module Card = struct
     | Jack -> Queen
     | Queen -> King
     | King -> Ace
-    | Ace -> invalid_arg "No next card for Ace"
+    | Ace -> invalid_arg "next: No next card for Ace"
 
     let previous = function
-    | T2 -> invalid_arg "No previous card for T2"
+    | T2 -> invalid_arg "previous: No previous card for T2"
     | T3 -> T2
     | T4 -> T3
     | T5 -> T4
@@ -126,7 +126,7 @@ module Card = struct
   let max card1 card2 = if compare card1 card2 >= 0 then card1 else card2
   let best cards =
     match cards with
-    | [] -> invalid_arg "empty list"
+    | [] -> invalid_arg "best: empty list"
     | first :: rest ->
       List.fold_left max first rest
 

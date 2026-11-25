@@ -60,10 +60,10 @@ let next = function
 | Jack -> Queen
 | Queen -> King
 | King -> Ace
-| Ace -> invalid_arg "No next card for Ace"
+| Ace -> invalid_arg "next: No next card for Ace"
 
 let previous = function
-| T2 -> invalid_arg "No previous card for T2"
+| T2 -> invalid_arg "previous: No previous card for T2"
 | T3 -> T2
 | T4 -> T3
 | T5 -> T4

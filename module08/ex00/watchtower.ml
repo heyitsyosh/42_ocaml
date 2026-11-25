@@ -16,6 +16,8 @@ end = struct
     (((hour1 - hour2) mod 12) + 12) mod 12
 end
 
+(* ────── Tests ────── *)
+
 let test_operation op hour1 hour2 =
   let result =
     match op with
@@ -34,6 +36,5 @@ let () =
   test_operation '+' 12 12;
   test_operation '+' 42 3;
   test_operation '+' (-6) 3;
-
   test_operation '-' 12 11;
   test_operation '-' 12 13

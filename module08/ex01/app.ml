@@ -21,6 +21,8 @@ end = struct
     (name, "succeed", 80)
 end
 
+(* ────── Tests ────── *)
+
 let print_proj ((name, status, grade) : App.project) =
   print_string ("(\"" ^ name ^ "\", \"" ^ status ^ "\", " ^ string_of_int grade ^ ")")
 
